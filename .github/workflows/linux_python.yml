@@ -1,4 +1,4 @@
-name: Python Linux CI
+name: Python Linuxx CI
 
 on: [push, pull_request]
 
