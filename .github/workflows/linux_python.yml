@@ -37,6 +37,7 @@ jobs:
     env:
       py: /opt/python/${{ matrix.pyver }}/bin/python
       img: quay.io/pypa/manylinux2014_aarch64
+      path: /opt/python/${{ matrix.pyver }}/bin/
     steps:
     - name: Checkout
       uses: actions/checkout@v2
@@ -54,6 +55,7 @@ jobs:
             cmake --version && \
             yum install -y swig && \
             swig -version && \
+            export PATH=${{ env.path }}:$PATH
             #echo "$HOME/.local/bin" >> ${{ github.workspace }} && \
             cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release -DBUILD_PYTHON=ON -DBUILD_CXX_SAMPLES=OFF -DBUILD_CXX_EXAMPLES=OFF && \
             cmake --build build --config Release --target all -v && \
